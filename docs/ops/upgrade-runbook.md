@@ -4,8 +4,8 @@ An upgrade swaps the wasm of the existing contracts and keeps their state, confi
 
 | Contract | File |
 |---|---|
-| Live `CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y` | `deployments/testnet.json` |
-| Test `CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ` | `deployments/testnet-test.json` |
+| Live `CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD` | `deployments/testnet.json` |
+| Test `CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU` | `deployments/testnet-test.json` |
 
 ## Steps
 

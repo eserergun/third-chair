@@ -6,10 +6,10 @@
   "networkPassphrase": "Test SDF Network ; September 2015",
   "friendbotUrl": "https://friendbot.stellar.org",
   "explorer": "https://stellar.expert/explorer/testnet",
-  "contractId": "CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y",
+  "contractId": "CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD",
   "nativeSac": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
   "wasmHash": "8f7c473c625ab8a0f9d4b69bc8e5ddb5effbef16be1f5d5f66a02cd0645aa440",
-  "admin": "GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3",
+  "admin": "GBSA2QKF2ZJYK6N5HL62YF2TDNKELY6JEGJH2GYFARQRHAUUQTGX3M3H",
   "commitSecs": 60,
   "revealSecs": 45,
   "pay": "10000000",
@@ -20,10 +20,8 @@
     "rustc": "rustc 1.95.0 (59807616e 2026-04-14)",
     "stellarCli": "stellar 30.0.1 (f2a7b74175c34585f3b30a1abf42a2d41cbcc390)",
     "command": "stellar contract build",
-    "wasmBytes": 30454
+    "wasmBytes": 30837
   },
-  "deployedAt": "2026-11-09T11:35:24.029Z",
-  "deployedLedger": 5640096,
-  "seededFrom": "withdrawn from the previous contracts by the admin",
-  "upgradedAt": "2026-11-09T15:42:37.691Z"
+  "deployedAt": "2026-11-11T13:14:59.960Z",
+  "deployedLedger": 5675841
 }

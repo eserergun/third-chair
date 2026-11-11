@@ -2,12 +2,12 @@
 
 Status date: 2026-11-09. P0 is done except the items that need a person or a device (section 5.1). Two rounds of live agent play verified the build; see `docs/p0-acceptance.md`.
 
-- Live site: https://eserergun.github.io/third-chair/ (GitHub Pages, private repo `eserergun/third-chair`)
+- Live site: https://eserergun.github.io/third-chair/ (GitHub Pages, public repo `eserergun/third-chair`)
 - Test site: https://eserergun.github.io/third-chair/test/
-- Live contract (testnet): `CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y` (60 s minute, 45 s reveal, 1 XLM per paid win, 60 paid wins per hour, 25 per wallet per day)
-- Test contract (testnet): `CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ` (20 s minute, 20 s reveal)
+- Live contract (testnet): `CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD` (60 s minute, 45 s reveal, 1 XLM per paid win, 60 paid wins per hour, 25 per wallet per day)
+- Test contract (testnet): `CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU` (20 s minute, 20 s reveal)
 - On-chain wasm (both): `8f7c473c625ab8a0f9d4b69bc8e5ddb5effbef16be1f5d5f66a02cd0645aa440`. It rebuilds to the same hash from any checkout (rustc 1.95.0, Stellar CLI 30.0.1).
-- Admin: `GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3`. The secret is in the local `stellar keys` store (`standoff-admin`) and in the repo secret `STANDOFF_ADMIN_SECRET`. See `docs/ops/admin-secret.md`.
+- Admin: `GBSA2QKF2ZJYK6N5HL62YF2TDNKELY6JEGJH2GYFARQRHAUUQTGX3M3H`. The secret is in the local `stellar keys` store (`standoff-admin`); the repo secret `STANDOFF_ADMIN_SECRET` is not set yet. See `docs/ops/admin-secret.md`.
 - Retired contracts: `deployments/ARCHIVE.md`.
 - Plans this document tracks: the original `third-chair` PLAN.md and this repo's SPEC.md.
 

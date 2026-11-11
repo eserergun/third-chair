@@ -5,7 +5,7 @@ const base: Deployment = {
   rpcUrl: "https://soroban-testnet.stellar.org",
   networkPassphrase: "Test SDF Network ; September 2015",
   friendbotUrl: "https://friendbot.stellar.org",
-  contractId: "CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y",
+  contractId: "CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD",
   nativeSac: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
   explorer: "https://stellar.expert/explorer/testnet",
 };

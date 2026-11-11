@@ -2,14 +2,27 @@
 
 Every contract below is still on Stellar testnet. None of them is used by the site any more. The current contracts are in `deployments/testnet.json` (live) and `deployments/testnet-test.json` (test).
 
-## v3, current (2026-11-09)
+## v4, current (2026-11-11)
+
+| | Live | Test |
+|---|---|---|
+| Contract | `CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD` | `CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU` |
+| Minute / reveal | 60 s / 45 s | 20 s / 20 s |
+| Wasm | `8f7c473c625ab8a0f9d4b69bc8e5ddb5effbef16be1f5d5f66a02cd0645aa440` — rebuilt from this repo to the same hash (rustc 1.95.0, Stellar CLI 30.0.1, `stellar contract build`) | same |
+| Admin | `GBSA2QKF2ZJYK6N5HL62YF2TDNKELY6JEGJH2GYFARQRHAUUQTGX3M3H` (local `stellar keys` alias `standoff-admin`) | same |
+| Purse at deploy | 40,000 XLM | 20,000 XLM |
+
+Both purses were seeded by `scripts/deploy.ts` from fresh Friendbot accounts (9,990 XLM per donor).
+The wasm is byte-identical to v3's, so this is a fresh deployment, not a code change.
+
+## v3, retired (2026-11-09)
 
 | | Live | Test |
 |---|---|---|
 | Contract | `CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y` | `CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ` |
 | Minute / reveal | 60 s / 45 s | 20 s / 20 s |
 | Wasm | `8f7c473c625ab8a0f9d4b69bc8e5ddb5effbef16be1f5d5f66a02cd0645aa440` after in-place upgrades (deployed as `2d57c6a4…`; `56dfc186…` before the slept-winner rule). rustc 1.95.0, Stellar CLI 30.0.1, `stellar contract build` | same |
-| Admin | `GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3` (local `stellar keys` alias `standoff-admin`; also the repo secret `STANDOFF_ADMIN_SECRET`) | same |
+| Admin | `GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3` (the secret is not available in this repo) | same |
 | Purse at deploy | 40,000 XLM | 20,000 XLM |
 
 The purse came from the v1 contracts (admin `withdraw`), not from new Friendbot accounts.

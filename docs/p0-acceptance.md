@@ -2,9 +2,9 @@
 
 Date: 2026-11-09. Scope: Stellar testnet only.
 
-- Live contract: `CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y` (60 s minute, 45 s reveal). Site: https://eserergun.github.io/third-chair/
-- Test contract: `CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ` (20 s minute, 20 s reveal). Site: https://eserergun.github.io/third-chair/test/
-- Wasm on both: see `deployments/testnet.json` (`wasmHash`). Admin `GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3`: local `stellar keys` alias `standoff-admin` and the repo secret `STANDOFF_ADMIN_SECRET`.
+- Live contract: `CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD` (60 s minute, 45 s reveal). Site: https://eserergun.github.io/third-chair/
+- Test contract: `CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU` (20 s minute, 20 s reveal). Site: https://eserergun.github.io/third-chair/test/
+- Wasm on both: see `deployments/testnet.json` (`wasmHash`). Admin `GBSA2QKF2ZJYK6N5HL62YF2TDNKELY6JEGJH2GYFARQRHAUUQTGX3M3H`: local `stellar keys` alias `standoff-admin` and the repo secret `STANDOFF_ADMIN_SECRET`.
 
 Legend: **Done** = built and verified on the live site or chain. **Manual** = needs a person, a phone, or an account that automation cannot create.
 

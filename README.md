@@ -21,11 +21,11 @@ Status and roadmap: [ROADMAP.md](ROADMAP.md). P0 acceptance: [docs/p0-acceptance
 
 | Role | File | Contract | Minute / reveal |
 |---|---|---|---|
-| Live | `deployments/testnet.json` | [`CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y`](https://stellar.expert/explorer/testnet/contract/CC3PPBRDTZ6LFAM3XNABLSNAWTHQOSMFFW66TGD6SMHG5PH37BBNOV2Y) | 60 s / 45 s |
-| Test | `deployments/testnet-test.json` | [`CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ`](https://stellar.expert/explorer/testnet/contract/CC2UPOKB4ACKNYUG7JUCR5HZ6HY6VGVCXHQNSCKHUOILHO4P2PHWFLUQ) | 20 s / 20 s |
+| Live | `deployments/testnet.json` | [`CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD`](https://stellar.expert/explorer/testnet/contract/CB54OWB4BP5UG6DZXCWKSCSP6UUEHMSDS4IKDASXLEHIMCZHTS7ALYRD) | 60 s / 45 s |
+| Test | `deployments/testnet-test.json` | [`CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU`](https://stellar.expert/explorer/testnet/contract/CAZ27LV745RPLVK7FAOB574PQYADQAMWZMN53Y7N5LI2BBGEOLY3ACVU) | 20 s / 20 s |
 
 - Wasm: `8f7c473c625ab8a0f9d4b69bc8e5ddb5effbef16be1f5d5f66a02cd0645aa440` (also in `deployments/standoff.wasm`), built with rustc 1.95.0 (pinned in `rust-toolchain.toml`) and Stellar CLI 30.0.1 using `stellar contract build`. Rebuild it to check: the hash must match. `stellar contract fetch --id <contract> --network testnet` gives the on-chain bytes.
-- Admin: `GC2SWUC254XOXW6PG4A7ZBRIMSQAS2OS73BSN76HG5OWYP6TJAJG43C3`. The secret lives in the local `stellar keys` store as `standoff-admin` and in the repo secret `STANDOFF_ADMIN_SECRET`. See [docs/ops/admin-secret.md](docs/ops/admin-secret.md).
+- Admin: `GBSA2QKF2ZJYK6N5HL62YF2TDNKELY6JEGJH2GYFARQRHAUUQTGX3M3H`. The secret lives in the local `stellar keys` store as `standoff-admin`. The repo secret `STANDOFF_ADMIN_SECRET` is not set, so the keeper workflow stays manual. See [docs/ops/admin-secret.md](docs/ops/admin-secret.md).
 - Earlier contracts: [deployments/ARCHIVE.md](deployments/ARCHIVE.md).
 
 ## How a minute works
