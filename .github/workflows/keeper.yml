@@ -1,0 +1,73 @@
+name: Keeper
+
+# Keeps the live and test testnet contracts alive: settles abandoned minutes,
+# extends storage TTLs, tops up the purses, and redeploys after a testnet reset (then commits the
+# new deployment files and rebuilds the site).
+
+on:
+  # Manual only on purpose. The sweep signs with the contract admin key from
+  # STANDOFF_ADMIN_SECRET; with no such secret in this repo every scheduled tick would fail,
+  # and it would rewrite the deployment files. Add the secret, then run it by hand.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: keeper
+  cancel-in-progress: false
+
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Cache Stellar CLI
+        id: stellar-cli
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/bin/stellar
+          key: stellar-cli-30.0.1-x86_64-linux
+      - name: Install Stellar CLI
+        if: steps.stellar-cli.outputs.cache-hit != 'true'
+        run: |
+          # GitHub release downloads sometimes return a 5xx page; --fail keeps it out of tar.
+          url=https://github.com/stellar/stellar-cli/releases/download/v30.0.1/stellar-cli-30.0.1-x86_64-unknown-linux-gnu.tar.gz
+          mkdir -p ~/.local/bin
+          for i in 1 2 3 4 5 6; do
+            if curl --fail --retry 4 --retry-delay 5 --retry-all-errors -sSL -o stellar.tgz "$url" && tar -xzf stellar.tgz; then break; fi
+            echo "download failed (try $i), waiting"; sleep 20
+          done
+          mv stellar ~/.local/bin/stellar
+      - name: Put Stellar CLI on PATH
+        run: |
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          ~/.local/bin/stellar --version
+      - name: Keep the contract
+        id: keep
+        env:
+          STANDOFF_ADMIN_SECRET: ${{ secrets.STANDOFF_ADMIN_SECRET }}
+        run: |
+          set +e
+          npx tsx scripts/keeper.ts
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" != "0" ] && [ "$code" != "10" ]; then exit "$code"; fi
+          exit 0
+      - name: Commit the new deployment and rebuild the site
+        if: steps.keep.outputs.code == '10'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "third-chair-keeper"
+          git config user.email "third-chair-keeper@users.noreply.github.com"
+          git add deployments/testnet.json deployments/testnet-test.json deployments/standoff.wasm
+          git commit -m "Redeploy the contracts after a testnet reset"
+          git push
+          gh workflow run pages.yml --ref main

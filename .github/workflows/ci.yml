@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # rust-toolchain.toml pins the compiler and the wasm target.
+      - name: Install the pinned Rust toolchain
+        run: rustup show active-toolchain || rustup toolchain install
+      - uses: Swatinem/rust-cache@v2
+      - name: Contract tests
+        run: cargo test -p standoff
+      - name: Cache Stellar CLI
+        id: stellar-cli
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/bin/stellar
+          key: stellar-cli-30.0.1-x86_64-linux
+      - name: Install Stellar CLI
+        if: steps.stellar-cli.outputs.cache-hit != 'true'
+        run: |
+          # GitHub release downloads sometimes return a 5xx page; --fail keeps it out of tar.
+          url=https://github.com/stellar/stellar-cli/releases/download/v30.0.1/stellar-cli-30.0.1-x86_64-unknown-linux-gnu.tar.gz
+          mkdir -p ~/.local/bin
+          for i in 1 2 3 4 5 6; do
+            if curl --fail --retry 4 --retry-delay 5 --retry-all-errors -sSL -o stellar.tgz "$url" && tar -xzf stellar.tgz; then break; fi
+            echo "download failed (try $i), waiting"; sleep 20
+          done
+          mv stellar ~/.local/bin/stellar
+      - name: Put Stellar CLI on PATH
+        run: |
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          ~/.local/bin/stellar --version
+      - name: Build wasm
+        run: |
+          stellar contract build
+          ls -l target/wasm32v1-none/release/standoff.wasm
+          test $(stat -c%s target/wasm32v1-none/release/standoff.wasm) -lt 131072
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Practice table end to end
+        run: npx playwright test --project=practice
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report

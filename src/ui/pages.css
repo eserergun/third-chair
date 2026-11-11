@@ -1,0 +1,683 @@
+/* Navbar, map status, How it works, drawer and claim additions. Four inks, one typeface. */
+
+/* ---------- Top navbar (every route) ---------- */
+.app .topbar {
+  gap: 10px 14px;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.topnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 2px 9px;
+  color: var(--paper);
+  font-size: 12px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.topnav a:hover {
+  border-color: var(--paper);
+}
+
+.topnav a.on {
+  background-color: var(--paper);
+  background-image: var(--paper-tex);
+  color: var(--soot);
+  border-color: var(--paper);
+  box-shadow: inset 0 -3px 0 var(--rust);
+}
+
+.topnav a:focus-visible,
+.app .brand:focus-visible,
+.app .identity:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 1px;
+}
+
+/* ---------- Map status dots ---------- */
+.app .live-dot,
+.idle-dot {
+  flex: none;
+  display: inline-block;
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+/* A minute is running: a solid rust dot with a ring that pulses out of it. */
+.app .live-dot {
+  background: var(--rust);
+  border: 1px solid var(--soot);
+  opacity: 1;
+  animation: none;
+}
+
+.app .live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--rust);
+  border-radius: 50%;
+  animation: dot-pulse 1.4s ease-out infinite;
+}
+
+@keyframes dot-pulse {
+  from {
+    transform: scale(0.55);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* The house rehearses: an open ring in the text color. */
+.idle-dot {
+  border: 2px solid currentColor;
+  background: transparent;
+}
+
+.town-status,
+.slip-status,
+.room-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.slip-hint {
+  font-size: 11px;
+}
+
+.slip .slip-stake {
+  font-size: 12px;
+  border-top: 2px dotted var(--soot);
+  padding-top: 6px;
+}
+
+/* Phone room list under the painting. */
+.room-list {
+  list-style: none;
+  margin: 8px 0 10px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.room-row {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 6px;
+  text-align: left;
+  background-color: var(--paper);
+  background-image: var(--paper-tex);
+  border: 2px solid var(--soot);
+  box-shadow: 2px 2px 0 var(--soot);
+  cursor: pointer;
+}
+
+.room-row b {
+  font-size: 12px;
+}
+
+.room-row span {
+  font-size: 10px;
+}
+
+.room-row.active,
+.room-row:hover {
+  background: var(--soot);
+  color: var(--paper);
+}
+
+.room-row:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--soot);
+}
+
+/* ---------- Gazette ---------- */
+.gz-tx {
+  white-space: nowrap;
+}
+
+/* ---------- Drawer ---------- */
+.drawer h3 {
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+
+.drawer-sec {
+  border-top: 2px solid var(--soot);
+  padding-top: 10px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.drawer-sec p {
+  margin: 0 0 8px;
+}
+
+.drawer .drawer-danger {
+  margin-top: 36px;
+  border-top: 2px dashed var(--rust);
+  display: block;
+}
+
+.drawer-danger p {
+  margin: 0 0 8px;
+}
+
+.drawer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+/* ---------- Claim ---------- */
+.claim-badge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  vertical-align: middle;
+  font-size: 11px;
+  background: var(--felt);
+  color: var(--paper);
+  border: 2px solid var(--soot);
+}
+
+.claim-done {
+  border-left: 6px solid var(--felt);
+  padding: 4px 0 4px 10px;
+}
+
+/* ---------- How it works ---------- */
+.how {
+  width: min(1000px, 100%);
+  padding: 20px 26px 24px;
+  box-shadow: 8px 8px 0 var(--rust);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.how p {
+  margin: 0 0 8px;
+}
+
+.hw-mast {
+  text-align: center;
+  border-bottom: 4px solid var(--soot);
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.hw-mast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  border-bottom: 2px solid var(--soot);
+}
+
+.hw-kicker {
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 0 0 4px;
+}
+
+.hw-mast h1 {
+  font-size: 34px;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+}
+
+.how .hw-lead {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.hw-stakes {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 18px;
+  margin: 22px 0 14px;
+  padding: 14px;
+  border: var(--b);
+  box-shadow: 5px 5px 0 var(--soot);
+  background: var(--paper);
+}
+
+.hw-purse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  background: var(--felt);
+  color: var(--paper);
+  border: 3px solid var(--soot);
+  padding: 22px 10px;
+  align-self: start;
+}
+
+.hw-purse b {
+  font-size: 34px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hw-purse span {
+  font-size: 12px;
+}
+
+.hw-stakes h2 {
+  color: var(--rust);
+  font-size: 18px;
+}
+
+.hw-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  padding: 8px 0 10px;
+  border-bottom: 2px dotted var(--soot);
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+
+.hw-sec {
+  margin-bottom: 16px;
+}
+
+.hw-sec h2 {
+  border-bottom: 2px solid var(--soot);
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+.hw-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.hw-list li {
+  margin-bottom: 5px;
+}
+
+/* Card icons, drawn in CSS. */
+.hw-card {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 42px;
+  background: var(--paper);
+  border: 3px solid var(--soot);
+  box-shadow: 2px 2px 0 var(--soot);
+}
+
+.hw-card i {
+  display: block;
+}
+
+.hw-card-air i {
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--soot);
+  border-radius: 50%;
+}
+
+.hw-card-iron {
+  background: var(--rust);
+}
+
+.hw-card-iron i {
+  width: 8px;
+  height: 18px;
+  background: var(--paper);
+  border: 2px solid var(--soot);
+  border-radius: 4px 4px 1px 1px;
+}
+
+.hw-card-table i {
+  width: 18px;
+  height: 12px;
+  border-top: 5px solid var(--felt);
+  border-left: 3px solid var(--soot);
+  border-right: 3px solid var(--soot);
+}
+
+.hw-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hw-cards li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.hw-cards b {
+  color: var(--rust);
+}
+
+.hw-examples {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+}
+
+.hw-ex {
+  border: 3px solid var(--soot);
+  background: var(--paper);
+  padding: 8px;
+}
+
+.hw-seats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.hw-seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  padding: 4px 3px 5px;
+  border: 2px solid var(--soot);
+  box-shadow: 2px 2px 0 var(--soot);
+  background-color: var(--paper);
+  background-image: var(--paper-tex);
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.hw-seat small {
+  font-size: 9px;
+}
+
+.hw-seat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.hw-seat .hw-card {
+  width: 20px;
+  height: 28px;
+  border-width: 2px;
+  box-shadow: 1px 1px 0 var(--soot);
+}
+
+.hw-seat .hw-card-air i {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+}
+
+.hw-seat .hw-card-iron i {
+  width: 6px;
+  height: 12px;
+  border-width: 1px;
+}
+
+.hw-seat .hw-card-table i {
+  width: 12px;
+  height: 8px;
+  border-top-width: 4px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+
+.hw-result {
+  font-size: 12px;
+  border-left: 6px solid var(--rust);
+  padding-left: 8px;
+}
+
+.how .hw-result {
+  margin: 0;
+}
+
+.hw-result b {
+  color: var(--rust);
+}
+
+.hw-paid {
+  border-left-color: var(--felt);
+}
+
+.hw-paid b {
+  color: var(--felt);
+}
+
+.hw-cols {
+  columns: 2;
+  column-gap: 30px;
+  column-rule: 2px dotted var(--soot);
+  margin-top: 6px;
+}
+
+.hw-cols .hw-sec {
+  break-inside: avoid;
+}
+
+.hw-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  border-top: 4px solid var(--soot);
+  padding-top: 12px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.hw-foot .btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- Narrow ---------- */
+@media (max-width: 800px) {
+  .hw-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hw-cols {
+    columns: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Two rows: brand and identity, then the links. In flow, so it never covers the stage. */
+  .app .topbar {
+    flex-wrap: wrap;
+    row-gap: 2px;
+    padding: 6px 12px 4px;
+  }
+
+  .topnav {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: space-between;
+    gap: 2px;
+    margin: 0 -6px;
+  }
+
+  .topnav a {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+  /* Billen and Cheyen sit close on the painting: nudge them apart, keep the pins on the hamlets. */
+  .town-chip[data-room="billen"] {
+    transform: translate(calc(-50% - 10px), calc(-100% - 7px));
+  }
+
+  .town-chip[data-room="billen"]:active {
+    transform: translate(calc(-50% - 10px), calc(-100% - 7px)) scale(0.96);
+  }
+
+  .town-chip[data-room="billen"]::after {
+    margin-left: 6.5px;
+  }
+
+  .town-chip[data-room="cheyen"] {
+    transform: translate(calc(-50% + 10px), calc(-100% - 7px));
+  }
+
+  .town-chip[data-room="cheyen"]:active {
+    transform: translate(calc(-50% + 10px), calc(-100% - 7px)) scale(0.96);
+  }
+
+  .town-chip[data-room="cheyen"]::after {
+    margin-left: -13.5px;
+  }
+
+  .app .town-status .live-dot,
+  .app .town-status .idle-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .how-wrap {
+    padding: 12px 10px 20px;
+  }
+
+  .how {
+    padding: 14px 12px 16px;
+    box-shadow: 5px 5px 0 var(--rust);
+    font-size: 12px;
+  }
+
+  .hw-mast h1 {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .how .hw-lead {
+    font-size: 12px;
+  }
+
+  .hw-stakes {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 18px;
+  }
+
+  .hw-purse {
+    flex-direction: row;
+    padding: 8px 10px;
+  }
+
+  .hw-purse b {
+    font-size: 24px;
+  }
+
+  .hw-examples {
+    grid-template-columns: 1fr;
+  }
+
+  .hw-ex {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .topnav a {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app .live-dot::after {
+    animation: none;
+    display: none;
+  }
+
+  .room-row:active {
+    transform: none;
+  }
+}
+
+/* ---------- Map: cover fit (desktop and laptop) ----------
+   MapView measures the stage and places the painting rect in px.
+   Chips keep their percent anchors inside that rect. */
+.map-stage.is-fit {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  container-type: normal;
+  background: var(--soot);
+}
+
+.map-stage.is-fit .map-frame {
+  position: absolute;
+  aspect-ratio: auto;
+  z-index: 1;
+}
+
+.map-stage.is-fit .survey {
+  object-fit: fill;
+}
+
+/* Fills any space the crop leaves when cover would hide a hamlet. Never flat black. */
+.survey-backdrop {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  object-fit: cover;
+  filter: blur(18px) brightness(0.55);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.slip-right {
+  transform: translate(-15%, 14px);
+}
+
+.slip-up.slip-right {
+  transform: translate(-15%, calc(-100% - 70px));
+}

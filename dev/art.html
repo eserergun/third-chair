@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Saloon Art Gallery</title>
+    <style>
+      :root {
+        --soot: #140c08;
+        --paper: #e7d7b1;
+        --rust: #b8432f;
+        --felt: #2f4a3c;
+      }
+      body {
+        margin: 16px;
+        background: var(--soot);
+        color: var(--paper);
+        font: 14px/1.4 ui-monospace, Menlo, monospace;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 15px;
+        color: var(--rust);
+        margin: 28px 0 8px;
+        border-bottom: 1px solid var(--felt);
+      }
+      p.note {
+        margin: 0 0 12px;
+        max-width: 72ch;
+      }
+      figure {
+        margin: 0 0 18px;
+      }
+      figcaption {
+        margin: 0 0 4px;
+      }
+      canvas {
+        display: block;
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Third Chair: saloon art gallery</h1>
+    <p class="note">Every canvas is a 384 x 216 frame from drawScene, shown at 3x. Section C plays each reveal at fixed times; section D shows the same final frames with reduced motion.</p>
+    <main id="gallery"></main>
+    <script type="module" src="./art.ts"></script>
+  </body>
+</html>

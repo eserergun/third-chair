@@ -1,0 +1,47 @@
+{
+  "name": "third-chair",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Third Chair: a three-seat western standoff, fully on-chain on Stellar testnet.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "gen:skill": "tsx scripts/gen-skill.ts",
+    "predev": "tsx scripts/gen-skill.ts",
+    "dev": "vite",
+    "prebuild": "tsx scripts/gen-skill.ts",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "contract:test": "cargo test -p standoff",
+    "contract:build": "stellar contract build",
+    "deploy": "tsx scripts/deploy.ts",
+    "upgrade": "tsx scripts/upgrade.ts",
+    "agent": "tsx scripts/agent.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "jszip": "^3.10.2",
+    "pptxgenjs": "^4.0.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "@creit.tech/stellar-wallets-kit": "^2.8.0",
+    "@fontsource/silkscreen": "^5.3.0",
+    "@noble/hashes": "^2.4.0",
+    "@stellar/stellar-sdk": "^17.4.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}

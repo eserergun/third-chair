@@ -1,0 +1,5 @@
+# Pinned so the contract wasm is the same on every machine and in CI.
+[toolchain]
+channel = "1.95.0"
+targets = ["wasm32v1-none"]
+profile = "minimal"

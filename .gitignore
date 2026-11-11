@@ -1,0 +1,20 @@
+node_modules
+dist/
+target/
+.tools/
+test-results/
+playwright-report/
+blob-report/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+coverage/
+.secrets/
+scratch/
+public/skill.md
+contracts/**/test_snapshots/
+
+# Presentation decks stay on this machine only: never committed, never deployed.
+docs/decks/

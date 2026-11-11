@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sound kit</title>
+    <style>
+      :root {
+        --soot: #140c08;
+        --paper: #e7d7b1;
+        --rust: #b8432f;
+        --felt: #2f4a3c;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--paper);
+        color: var(--soot);
+      }
+      body {
+        margin: 0;
+        font: 14px/1.5 "Silkscreen", ui-monospace, Menlo, Consolas, monospace;
+      }
+      main {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 24px 16px 56px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+        letter-spacing: 1px;
+      }
+      h2 {
+        font-size: 15px;
+        margin: 28px 0 8px;
+        border-bottom: 2px solid var(--soot);
+        padding-bottom: 4px;
+      }
+      p {
+        margin: 6px 0;
+      }
+      .lede {
+        opacity: 0.8;
+      }
+      button {
+        font: inherit;
+        color: var(--paper);
+        background: var(--soot);
+        border: 2px solid var(--soot);
+        padding: 10px 12px;
+        cursor: pointer;
+        text-align: left;
+      }
+      button:hover {
+        background: #2a1c14;
+      }
+      button:active {
+        transform: scale(0.96);
+      }
+      button:focus-visible {
+        outline: 3px solid var(--rust);
+        outline-offset: 2px;
+      }
+      #mute {
+        min-width: 150px;
+      }
+      #mute[aria-pressed="true"] {
+        background: var(--felt);
+        border-color: var(--felt);
+      }
+      .bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-top: 16px;
+      }
+      .chip {
+        border: 2px solid var(--soot);
+        padding: 8px 10px;
+      }
+      .chip[data-status="ready"] {
+        background: var(--felt);
+        color: var(--paper);
+        border-color: var(--felt);
+      }
+      .chip[data-status="locked"] {
+        color: var(--rust);
+        border-color: var(--rust);
+      }
+      .pads {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 8px;
+      }
+      .pads button kbd,
+      .scenes button kbd {
+        color: var(--rust);
+        font: inherit;
+        margin-right: 6px;
+      }
+      .pads button small {
+        display: block;
+        opacity: 0.7;
+        font-size: 11px;
+      }
+      .scenes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .opts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 8px 16px;
+        margin-top: 12px;
+      }
+      .opts label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .opts input {
+        flex: 1;
+        accent-color: var(--rust);
+        min-width: 0;
+      }
+      .opts output {
+        min-width: 56px;
+        text-align: right;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 120px;
+        background: var(--soot);
+        image-rendering: pixelated;
+      }
+      #meter {
+        font-variant-numeric: tabular-nums;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 10px;
+        width: 100%;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        border-bottom: 1px solid rgba(20, 12, 8, 0.35);
+        padding: 4px 8px;
+        text-align: right;
+        white-space: nowrap;
+      }
+      th:first-child,
+      td:first-child {
+        text-align: left;
+      }
+      td.pass {
+        color: var(--felt);
+      }
+      td.fail {
+        color: var(--rust);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Third Chair sound kit</h1>
+      <p class="lede">Every sound is synthesized with the Web Audio API. There are no audio files.</p>
+
+      <div class="bar">
+        <button id="mute" type="button" aria-pressed="false">Sound: off</button>
+        <span id="status" class="chip" data-status="muted" aria-live="polite">Muted</span>
+      </div>
+      <p id="hint">Sound starts off. Turn it on, then press a pad or the keys 1 to 9. Key M toggles sound.</p>
+
+      <h2>Sounds</h2>
+      <div id="pads" class="pads" role="group" aria-label="Sounds"></div>
+      <div class="opts" role="group" aria-label="Play options">
+        <label>Pan <input id="pan" type="range" min="-1" max="1" step="0.1" value="0" /><output id="pan-out">0.0</output></label>
+        <label>Delay <input id="delay" type="range" min="0" max="1" step="0.05" value="0" /><output id="delay-out">0.00 s</output></label>
+        <label>Volume <input id="volume" type="range" min="0" max="1" step="0.05" value="1" /><output id="volume-out">1.00</output></label>
+      </div>
+
+      <h2>Scenes</h2>
+      <div id="scenes" class="scenes" role="group" aria-label="Scenes"></div>
+
+      <h2>Output</h2>
+      <canvas id="scope" width="384" height="96" aria-label="Live output waveform"></canvas>
+      <p id="meter">Peak since last play: L 0.000 R 0.000</p>
+
+      <h2>Offline renders</h2>
+      <button id="render" type="button">Render all offline</button>
+      <div class="table-wrap"><table id="table" aria-label="Offline render measurements"></table></div>
+    </main>
+    <script type="module" src="./audio.ts"></script>
+  </body>
+</html>
