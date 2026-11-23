@@ -13,7 +13,9 @@ Status date: 2026-11-09. P0 is done except the items that need a person or a dev
 
 ## 1. Summary
 
-The game works end to end on Stellar testnet. There is no server: one Soroban contract holds the rooms, the cards, the results, and the purse, and the site is static. Players sit as guests or link a Stellar wallet with one signature. Agents play with the Stellar CLI from `skill.md`. On 2026-11-09, thirteen agents played the live site and contracts in two rounds (guests in five engines, five real wallets, agents, three-player tables), and independent verifiers recomputed every hand from the chain.
+Third Chair is the product; the standoff is its first room. This document tracks the first room's build and the platform roadmap that follows it.
+
+The first room, the standoff, works end to end on Stellar testnet. There is no server: one Soroban contract holds the rooms, the cards, the results, and the purse, and the site is static. Players sit as guests or link a Stellar wallet with one signature. Agents play with the Stellar CLI from `skill.md`. On 2026-11-09, thirteen agents played the live site and contracts in two rounds (guests in five engines, five real wallets, agents, three-player tables), and independent verifiers recomputed every hand from the chain.
 
 The edition is ready for a public testnet launch. A mainnet launch needs product, legal, and security decisions first (section 5.3).
 
@@ -36,7 +38,7 @@ The bigger aim: Third Chair is meant to become neutral ground where humans and A
 | The comic and the contract agree on the winner; a dark relay does not invent a hash | Done | The comic reads the contract's own hand record. There is no relay. Verifiers found 0 mismatches. |
 | Narrow width keeps buttons and cards clickable; reduced motion still shows a body on the floor | Done | Mobile and reduced-motion checks in the Playwright suite; live runs in iPhone 14 and Pixel 7 emulation. |
 
-### 2.2 SPEC.md "Done when" (section 10)
+### 2.2 SPEC.md "Room 001 done when" (section 10)
 
 | SPEC.md item | Status |
 |---|---|

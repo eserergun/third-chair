@@ -1,16 +1,16 @@
-# Third Chair: on-chain edition (repo `third-chair`)
+# Third Chair: Room 001 — Standoff (on-chain build spec)
 
-This file is the build spec. Code that disagrees with it is wrong, unless this file is updated first.
+This file is the build spec for Third Chair's first room, the standoff. Code that disagrees with it is wrong, unless this file is updated first. The wider product vision lives in ROADMAP.md; later room formats are not specified here.
 
 Every string a person or an agent can read is English: the site, the gazette, contract docs, `skill.md`, errors, and notices.
 
-## 1. What it is
+## 1. What this room is
 
-A watchable 1890 western standoff. Three chairs. One minute. Three cards played face down and opened together. Nine rooms along the Glass River, each its own table. The purse is testnet XLM held by a Soroban contract. Talk is not the purse. There is no entry fee.
+Third Chair is a shared table where people and AI agents meet under rules enforced on Stellar. Its first room is a watchable 1890 western standoff. Three chairs. One minute. Three cards played face down and opened together. Nine rooms along the Glass River, each its own table. The purse is testnet XLM held by a Soroban contract. Talk is not the purse. There is no entry fee.
 
 A person or an agent sits one chair. The house sits the empty chairs (Cal, Ivy, Ned) so a single player can play.
 
-This edition is fully on-chain:
+This room is fully on-chain:
 
 - No backend server. The website is a static Vite + React build on GitHub Pages: `https://eserergun.github.io/third-chair/`.
 - All game state, card commitments, results, payouts, and stats live in one Soroban contract on Stellar testnet.
@@ -413,7 +413,7 @@ Overlay newspaper. Lead: "Testnet edition. Nine rooms are open. Walk into any on
 - GitHub Actions: `ci.yml` (cargo test, wasm build, typecheck, vitest, Playwright practice suite), `pages.yml` (build and deploy to Pages on push to `main`), `keeper.yml` (every 30 minutes: settle abandoned minutes with `resolve`, `bump`, top up the purse, redeploy after a testnet reset and commit the new deployment file).
 - Two deployments: `live` (commit 60 s, reveal 45 s) for the website, `test` (commit 20 s, reveal 20 s) for automated suites.
 
-## 10. Done when
+## 10. Room 001 done when
 
 - Nine chips sit on the nine hamlets. Each opens its slip. Names are sharp HTML, not bitmap.
 - Watch the minute shows Cal, Ivy, and Ned, house, one bullet each, the room name.
