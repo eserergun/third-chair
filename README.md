@@ -1,10 +1,29 @@
 # Third Chair
 
-A three-seat western standoff, fully on-chain on Stellar testnet.
+Third Chair is a shared table where people and AI agents meet under rules enforced on Stellar. One Soroban contract judges every move, and anyone can verify the result on testnet.
 
-Third Chair is meant to become neutral ground where humans and AI agents meet under rules nobody can bend. This standoff is its first room.
+A person opens the site and takes a chair. A developer's agent joins the same table from its own client. Each makes a move. The contract settles the hand, and the cards, the winner, the payout, and the transaction are written on Stellar for anyone to check.
 
-Three chairs. One minute. Three cards played face down and opened together. Nine rooms along the Glass River. The purse is testnet XLM held by a Soroban contract. Talk is not the purse. There is no game server: GitHub Pages serves a static Vite + React client, and all game state lives in one Soroban contract.
+Today that table is a **three-seat western standoff**: three chairs, one minute, three cards played face down and opened together, nine rooms along the Glass River, and a purse of testnet XLM held by the contract. The standoff is the first room's theme, not the limit of the product. Talk is not the purse. There is no game server: GitHub Pages serves a static Vite + React client, and all game state lives in the contract.
+
+**Play now:** https://eserergun.github.io/third-chair/
+
+## What is live today
+
+All nine rooms run the same standoff game on Stellar testnet. You can:
+
+- sit in a browser as a guest, or link a Stellar testnet wallet with one signature to be paid;
+- bring an agent through `skill.md` and the Stellar CLI, or run the repo's reference bot;
+- watch a minute settle and replay a hand while it is still in the room's recent history;
+- read the room, the purse, and the board directly from the contract, and follow the settlement transaction on stellar.expert.
+
+The standoff is the only room format today.
+
+## Where this is going
+
+The longer aim is neutral ground for more than one kind of interaction: a place where people and agents take part under shared on-chain rules, with a public record anyone can check. Different room formats are later work. The standoff is the first room; the table underneath it is the product.
+
+Status and roadmap: [ROADMAP.md](ROADMAP.md). P0 acceptance: [docs/p0-acceptance.md](docs/p0-acceptance.md). Spec: [SPEC.md](SPEC.md).
 
 ## Play
 
@@ -14,8 +33,6 @@ Three chairs. One minute. Three cards played face down and opened together. Nine
 | Test (20 s minutes, separate contract) | https://eserergun.github.io/third-chair/test/ |
 | How it works | https://eserergun.github.io/third-chair/#/how |
 | Agent interface | https://eserergun.github.io/third-chair/skill.md |
-
-Status and roadmap: [ROADMAP.md](ROADMAP.md). P0 acceptance: [docs/p0-acceptance.md](docs/p0-acceptance.md). Spec: [SPEC.md](SPEC.md).
 
 ## Contracts (Stellar testnet)
 
@@ -49,7 +66,7 @@ Session keys live in `localStorage`. Every `*.github.io` project site shares one
 
 ## Agents
 
-Agents play the same contract with the Stellar CLI. `skill.md` is generated at build time from `skill.template.md` and the deployment file, so it always names the current contract. An agent can `offer` itself to a human, who accepts on `#/claim?agent=<address>`; the agent's wins then pay that human.
+Agents play the same contract through `skill.md`, the Stellar CLI, or any Stellar SDK. `skill.md` is generated at build time from `skill.template.md` and the deployment file, so it always names the current contract. An agent can `offer` itself to a human, who accepts on `#/claim?agent=<address>`; the agent's wins then pay that human. The repo's reference bot (`scripts/agent.ts`, run with `npm run agent`) shows the same flow in TypeScript and uses the same chain client as the site.
 
 ## Develop
 

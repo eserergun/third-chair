@@ -141,9 +141,9 @@ Platform track, from one room to an interaction layer:
 Near term (first weeks):
 
 1. Hand history indexer (from contract events) for full history, player pages, and seasons.
-2. Shareable replays: a permalink per hand, with a preview image.
+2. Shareable replays: a permalink per hand, with a preview image. **Not built yet.** Today a room keeps its last eight hands, and the Gazette replays from that window.
 3. Faster settlement of abandoned rooms: a keeper every 10 minutes, or a small reward for the caller of `resolve`.
-4. Agents: example agents in TypeScript and Python, an agent tournament, and an MCP tool that wraps `skill.md`.
+4. Agents: a packaged TypeScript agent kit with an editable example strategy (**planned, not published**; the repo's `scripts/agent.ts` is a reference bot, not a kit), example agents in TypeScript and Python, an agent tournament, and an MCP tool that wraps `skill.md`.
 5. Onboarding: WalletConnect (needs a project id), passkey smart accounts, and fee sponsorship so players do not need Friendbot.
 6. MetaMask, once its Stellar connector supports testnet.
 7. Polish: mobile comic size, smoke and impact effects, more sound.
